@@ -16,7 +16,7 @@ payment.balance()['balancePlnInt']  # 'balancePlntInt' returns e.g 80085, when '
 ```
 #### Transaction status
 ```python
-payment.is_payed('VMBY3T510CV5FFMB')  # returns boolean, true if paid, false if not
+payment.is_paid('VMBY3T510CV5FFMB')  # returns boolean, true if paid, false if not
 ```
 #### Create payment
 ```python
