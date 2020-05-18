@@ -1,57 +1,60 @@
 import requests
 
-def setApiKey(key):
-  global apiKey
-  apiKey = key
+url = "https://api.lvlup.pro/v4/"
 
-def createPayment(amount, redirectUrl="", webhookUrl=""):
 
-  headers = {
-      'accept': 'application/json',
-      'Authorization': 'Bearer '+apiKey,
-      'Content-Type': 'application/json',
-  }
-  data = '{ "amount": "%s", "redirectUrl": "%s", "webhookUrl": "%s"}' % (amount,redirectUrl,webhookUrl,)
+class Payments(object):
+    def __init__(self, api_key):
+        self._api_key = api_key
 
-  response = requests.post('https://api.lvlup.pro/v4/wallet/up', headers=headers, data=data)
+    def create_payment(self, amount, redirectUrl="", webhookUrl=""):
 
-  try:
-    return response.json()
-  except Exception as e:
-    return e
+        headers = {
+            "accept": "application/json",
+            "Authorization": "Bearer " + self._api_key,
+            "Content-Type": "application/json",
+        }
+        data = '{ "amount": "%s", "redirectUrl": "%s", "webhookUrl": "%s"}' % (
+            amount,
+            redirectUrl,
+            webhookUrl,
+        )
 
-def checkPayment(id):
+        response = requests.post(url + "wallet/up", headers=headers, data=data)
 
-  headers = {
-    'accept': 'application/json',
-    'Authorization': 'Bearer '+apiKey,
-  }
+        return response.json()
 
-  response = requests.get('https://api.lvlup.pro/v4/wallet/up/'+id, headers=headers)
+    def is_payed(self, id):
 
-  info = response.json()
-  if info['payed']:
-    return True
-  return False
+        headers = {
+            "accept": "application/json",
+            "Authorization": "Bearer " + self._api_key,
+        }
 
-def balance():
-  headers = {
-    'accept': 'application/json',
-    'Authorization': 'Bearer '+apiKey,
-  }
+        response = requests.get(url + "wallet/up" + id, headers=headers)
 
-  response = requests.get('https://api.lvlup.pro/v4/wallet', headers=headers)
-  return response.json()
+        info = response.json()
 
-def paymentsList(limit):
-  headers = {
-    'accept': 'application/json',
-    'Authorization': 'Bearer '+apiKey,
-  }
+        if info["payed"]:
+            return True
+        return False
 
-  params = (
-      ('limit', str(limit)),
-  )
+    def balance(self):
+        headers = {
+            "accept": "application/json",
+            "Authorization": "Bearer " + self._api_key,
+        }
 
-  response = requests.get('https://api.lvlup.pro/v4/payments', headers=headers, params=params)
-  return response.json()
+        response = requests.get(url + "wallet", headers=headers)
+        return response.json()
+
+    def payments(self, limit):
+        headers = {
+            "accept": "application/json",
+            "Authorization": "Bearer " + self._api_key,
+        }
+
+        params = (("limit", str(limit)),)
+
+        response = requests.get(url + "payments", headers=headers, params=params)
+        return response.json()
