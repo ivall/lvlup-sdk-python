@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='lvlup-payments',
+    name='lvluppayments',
     author='ivall',
     author_email='ivallpl@gmail.com',
     install_requires=['requests'],
