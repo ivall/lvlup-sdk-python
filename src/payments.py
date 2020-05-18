@@ -24,7 +24,7 @@ class Payments(object):
 
         return response.json()
 
-    def is_payed(self, id):
+    def is_paied(self, id):
 
         headers = {
             "accept": "application/json",
