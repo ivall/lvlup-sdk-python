@@ -5,6 +5,7 @@ setup(
     author='ivall',
     author_email='ivallpl@gmail.com',
     install_requires=['requests'],
+    version='1.0',
     description='Library with lvlup payments in python.',
     long_description=open('README.md').read(),
     long_description_content_type="text/markdown",
