@@ -13,7 +13,7 @@ def createPayment(amount, redirectUrl="", webhookUrl=""):
   }
   data = '{ "amount": "%s", "redirectUrl": "%s", "webhookUrl": "%s"}' % (amount,redirectUrl,webhookUrl,)
 
-  response = requests.post('https://sandbox-api.lvlup.pro/v4/wallet/up', headers=headers, data=data)
+  response = requests.post('https://api.lvlup.pro/v4/wallet/up', headers=headers, data=data)
 
   try:
     return response.json()
@@ -27,7 +27,7 @@ def checkPayment(id):
     'Authorization': 'Bearer '+apiKey,
   }
 
-  response = requests.get('https://sandbox-api.lvlup.pro/v4/wallet/up/'+id, headers=headers)
+  response = requests.get('https://api.lvlup.pro/v4/wallet/up/'+id, headers=headers)
 
   info = response.json()
   if info['payed']:
@@ -40,7 +40,7 @@ def balance():
     'Authorization': 'Bearer '+apiKey,
   }
 
-  response = requests.get('https://sandbox-api.lvlup.pro/v4/wallet', headers=headers)
+  response = requests.get('https://api.lvlup.pro/v4/wallet', headers=headers)
   return response.json()
 
 def paymentsList(limit):
@@ -53,5 +53,5 @@ def paymentsList(limit):
       ('limit', str(limit)),
   )
 
-  response = requests.get('https://sandbox-api.lvlup.pro/v4/payments', headers=headers, params=params)
+  response = requests.get('https://api.lvlup.pro/v4/payments', headers=headers, params=params)
   return response.json()
