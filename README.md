@@ -2,6 +2,11 @@
 
 ## Examples
 
+#### Importing
+```pip install git+https://github.com/ivall/lvlup-sdk-python#egg=lvluppayments```
+```python
+from lvluppayments import Payments
+```
 #### New instance
 ```python
 payment = Payments('api_key')
