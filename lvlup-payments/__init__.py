@@ -1,3 +1,3 @@
-name = 'lvlup-payments'
+name = 'lvluppayments'
 
 from .payments import Payments
