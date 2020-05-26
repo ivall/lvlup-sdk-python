@@ -24,9 +24,7 @@ class Payments(object):
 
         info = response.json()
 
-        if info["payed"]:
-            return True
-        return False
+        return info["payed"]
 
     def balance(self):
 
