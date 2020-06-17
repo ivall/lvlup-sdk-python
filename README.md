@@ -9,7 +9,7 @@ from lvluppayments import Payments
 ```
 #### New instance
 ```python
-payment = Payments('api_key')
+payment = Payments('api_key', 'sandbox')  # sandbox or production in arg2
 ```
 #### Payments
 ```python
