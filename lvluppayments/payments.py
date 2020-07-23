@@ -21,7 +21,7 @@ class Payments(object):
 
     def is_paid(self, id):
 
-        response = requests.get(self.url + "wallet/up" + id, headers=self.headers)
+        response = requests.get(self.url + "wallet/up/" + id, headers=self.headers)
 
         info = response.json()
 
