@@ -5,7 +5,7 @@ class Payments(object):
         if config == 'production':
           self.url = "https://api.lvlup.pro/v4/"
         elif config == 'sandbox':
-          self.url = "https://sandbox-api.lvlup.pro/v4/"
+          self.url = "https://api.sandbox.lvlup.pro/v4/"
         self.headers = {
             "accept": "application/json",
             "Authorization": "Bearer " + api_key,
